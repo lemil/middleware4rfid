@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 
         // Recursively list the contents of the root directory
         //
-		tdt->refreshTranslations();
+			tdt->translate("urn:epc:tag:sgtin-96:3.6902018.999717.110224000001", "", "BINARY");
     } catch (const Ice::Exception& ex) {
         cerr << ex << endl;
         status = 1;

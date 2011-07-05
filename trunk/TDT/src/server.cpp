@@ -4,13 +4,13 @@
 class MyTdtService : public Ice::Service 
 {
 protected:
-    virtual bool start(int, char*[], int &);
+    virtual bool start(int, char*[]);
 private:
     Ice::ObjectAdapterPtr _adapter;
 };
 
 bool
-MyTdtService::start(int argc, char* argv[], int &code)
+MyTdtService::start(int argc, char* argv[])
 {
 	_adapter = communicator()->createObjectAdapter("TdtAdapter");
 	_adapter->add(new TdtServantI, 
