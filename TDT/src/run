@@ -1,3 +1,0 @@
-#!/bin/sh
-
-./tdt_server --Ice.Config=../../rfid.cfg 
