@@ -3,16 +3,15 @@ noinst_LIBRARIES=libtdtcommon.a
 libtdtcommon_a_SOURCES= \
 	soapC.cpp \
 	table.cpp \
-	ns1.cpp
+	tdt.cpp
 
 libtdtcommon_a_LIBADD= \
 	$(objfiles)
 
-ns1.cpp: ns1.nsmap
+tdt.cpp: tdt.nsmap
 	mv $< $@
 
-
-soapC.cpp: EpcTagDataTranslation.h
+soapC.cpp tdt.nsmap: EpcTagDataTranslation.h
 	soapcpp2 $^ -I /usr/local/share/gsoap/import
 
 EpcTagDataTranslation.h: CompactionMethodList.xsd   InputFormatList.xsd  ModeList.xsd EpcTagDataTranslation.xsd  LevelTypeList.xsd    PadDirectionList.xsd
