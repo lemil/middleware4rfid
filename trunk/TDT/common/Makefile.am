@@ -1,21 +1,21 @@
 noinst_LIBRARIES=libtdtcommon.a
 
 libtdtcommon_a_SOURCES= \
-	soapC.cpp \
-	table.cpp \
-	tdt.cpp
+	soapC.c \
+	table.c \
+	tdt.c
 
 libtdtcommon_a_LIBADD= \
 	$(objfiles)
 
-tdt.cpp: tdt.nsmap
+tdt.c: tdt.nsmap
 	mv $< $@
 
-soapC.cpp tdt.nsmap: EpcTagDataTranslation.h
-	soapcpp2 $^ -I /usr/local/share/gsoap/import
+soapC.c tdt.nsmap: EpcTagDataTranslation.h
+	soapcpp2 -c $^ 
 
 EpcTagDataTranslation.h: CompactionMethodList.xsd   InputFormatList.xsd  ModeList.xsd EpcTagDataTranslation.xsd  LevelTypeList.xsd    PadDirectionList.xsd
-	wsdl2h EpcTagDataTranslation.xsd
+	wsdl2h -c EpcTagDataTranslation.xsd
 
 files= \
 	SGLN-195.xml \
@@ -46,7 +46,7 @@ declares=$(foreach name,$(names),"extern char _binary_$(name)_xml_start[]; exter
 
 inits=$(foreach name,$(names), "{\"$(name)\", _binary_`echo $(name)|sed 's/\./_/;s/-/_/g'`_xml_start, _binary_`echo $(name)|sed 's/\./_/g;s/-/_/g'`_xml_end}, ")
 
-table.cpp: table.h
+table.c: table.h
 	echo '#include "table.h"' > $@
 	echo $(declares) |sed 's/-/_/g;s/\.xml/_xml/g' >> $@
 	echo 'XMLFile xmlfiles[] = {' >>$@
@@ -68,7 +68,7 @@ table.h:
 
 
 clean-local:
-	rm -f *.h *.cpp
+	rm -f *.h *.c *.nsmap
 
 OBJCOPY             ?= objcopy
 OBJDUMP             ?= objdump
