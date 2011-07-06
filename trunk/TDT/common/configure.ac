@@ -14,6 +14,7 @@ AC_PROG_RANLIB
 # Checks for header files.
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_SIZE_T
 
 # Checks for library functions.
 
