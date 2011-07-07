@@ -3,12 +3,12 @@ TESTS=test
 check_PROGRAMS=test
 
 test_SOURCES= \
-	test.c 
+	test.cpp
 
-test_CFLAGS= \
+test_CXXFLAGS= \
 	-I..
 
 test_LDADD= \
 	../libtdt.la \
-	/usr/local/lib/libgsoap.a
+	/usr/local/lib/libgsoap++.a
 	
