@@ -12,7 +12,7 @@
 
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.1 2011-07-07 03:57:38 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.1 2011-07-08 07:58:25 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -1288,7 +1288,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_tdt__EpcTagDataTranslation(struct soap *soap,
 	soap_set_attr(soap, "epcTDSVersion", ((tdt__EpcTagDataTranslation*)a)->epcTDSVersion.c_str(), 1);
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_tdt__EpcTagDataTranslation), type))
 		return soap->error;
-	if (soap_out_std__vectorTemplateOfPointerTotdt__Scheme(soap, "scheme", -1, &(a->tdt__EpcTagDataTranslation::scheme), ""))
+	if (soap_out_std__vectorTemplateOfPointerTotdt__Scheme(soap, "scheme", -1, &(a->tdt__EpcTagDataTranslation::scheme), "tdt:Scheme"))
 		return soap->error;
 	/* transient soap skipped */
 	return soap_element_end_out(soap, tag);
@@ -1451,7 +1451,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_tdt__Scheme(struct soap *soap, const char *ta
 	soap_set_attr(soap, "tagLength", ((tdt__Scheme*)a)->tagLength.c_str(), 1);
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_tdt__Scheme), type))
 		return soap->error;
-	if (soap_out_std__vectorTemplateOfPointerTotdt__Level(soap, "level", -1, &(a->tdt__Scheme::level), ""))
+	if (soap_out_std__vectorTemplateOfPointerTotdt__Level(soap, "level", -1, &(a->tdt__Scheme::level), "tdt:Level"))
 		return soap->error;
 	/* transient soap skipped */
 	return soap_element_end_out(soap, tag);
@@ -1629,9 +1629,9 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_tdt__Level(struct soap *soap, const char *tag
 		soap_set_attr(soap, "requiredFormattingParameters", ((tdt__Level*)a)->requiredFormattingParameters->c_str(), 1);
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_tdt__Level), type))
 		return soap->error;
-	if (soap_out_std__vectorTemplateOfPointerTotdt__Option(soap, "option", -1, &(a->tdt__Level::option), ""))
+	if (soap_out_std__vectorTemplateOfPointerTotdt__Option(soap, "option", -1, &(a->tdt__Level::option), "tdt:Option"))
 		return soap->error;
-	if (soap_out_std__vectorTemplateOfPointerTotdt__Rule(soap, "rule", -1, &(a->tdt__Level::rule), ""))
+	if (soap_out_std__vectorTemplateOfPointerTotdt__Rule(soap, "rule", -1, &(a->tdt__Level::rule), "tdt:Rule"))
 		return soap->error;
 	/* transient soap skipped */
 	return soap_element_end_out(soap, tag);
@@ -2168,7 +2168,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_tdt__Option(struct soap *soap, const char *ta
 	soap_set_attr(soap, "grammar", ((tdt__Option*)a)->grammar.c_str(), 1);
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_tdt__Option), type))
 		return soap->error;
-	if (soap_out_std__vectorTemplateOfPointerTotdt__Field(soap, "field", -1, &(a->tdt__Option::field), ""))
+	if (soap_out_std__vectorTemplateOfPointerTotdt__Field(soap, "field", -1, &(a->tdt__Option::field), "tdt:Field"))
 		return soap->error;
 	/* transient soap skipped */
 	return soap_element_end_out(soap, tag);
@@ -2805,9 +2805,9 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_SOAP_ENV__Fault(struct soap *soap, const char
 		return soap->error;
 	if (soap_out__QName(soap, "faultcode", -1, (char*const*)&soap_tmp_faultcode, ""))
 		return soap->error;
-	if (soap_out_string(soap, "faultstring", -1, &a->faultstring, ""))
+	if (soap_out_string(soap, "faultstring", -1, &a->faultstring, "xsd:string"))
 		return soap->error;
-	if (soap_out_string(soap, "faultactor", -1, &a->faultactor, ""))
+	if (soap_out_string(soap, "faultactor", -1, &a->faultactor, "xsd:string"))
 		return soap->error;
 	if (soap_out_PointerToSOAP_ENV__Detail(soap, "detail", -1, &a->detail, ""))
 		return soap->error;
@@ -4132,7 +4132,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerTotdt__Scheme(str
 {
 	for (std::vector<tdt__Scheme * >::const_iterator i = a->begin(); i != a->end(); ++i)
 	{
-		if (soap_out_PointerTotdt__Scheme(soap, tag, id, &(*i), ""))
+		if (soap_out_PointerTotdt__Scheme(soap, tag, id, &(*i), "tdt:Scheme"))
 			return soap->error;
 	}
 	return SOAP_OK;
@@ -4220,7 +4220,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerTotdt__Level(stru
 {
 	for (std::vector<tdt__Level * >::const_iterator i = a->begin(); i != a->end(); ++i)
 	{
-		if (soap_out_PointerTotdt__Level(soap, tag, id, &(*i), ""))
+		if (soap_out_PointerTotdt__Level(soap, tag, id, &(*i), "tdt:Level"))
 			return soap->error;
 	}
 	return SOAP_OK;
@@ -4308,7 +4308,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerTotdt__Rule(struc
 {
 	for (std::vector<tdt__Rule * >::const_iterator i = a->begin(); i != a->end(); ++i)
 	{
-		if (soap_out_PointerTotdt__Rule(soap, tag, id, &(*i), ""))
+		if (soap_out_PointerTotdt__Rule(soap, tag, id, &(*i), "tdt:Rule"))
 			return soap->error;
 	}
 	return SOAP_OK;
@@ -4396,7 +4396,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerTotdt__Option(str
 {
 	for (std::vector<tdt__Option * >::const_iterator i = a->begin(); i != a->end(); ++i)
 	{
-		if (soap_out_PointerTotdt__Option(soap, tag, id, &(*i), ""))
+		if (soap_out_PointerTotdt__Option(soap, tag, id, &(*i), "tdt:Option"))
 			return soap->error;
 	}
 	return SOAP_OK;
@@ -4484,7 +4484,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerTotdt__Field(stru
 {
 	for (std::vector<tdt__Field * >::const_iterator i = a->begin(); i != a->end(); ++i)
 	{
-		if (soap_out_PointerTotdt__Field(soap, tag, id, &(*i), ""))
+		if (soap_out_PointerTotdt__Field(soap, tag, id, &(*i), "tdt:Field"))
 			return soap->error;
 	}
 	return SOAP_OK;

@@ -6,6 +6,9 @@
 #include <map>
 #include <exception>
 
+#include <log4cpp/Category.hh>
+#include <log4cpp/PropertyConfigurator.hh>
+
 #include "soapH.h"
 
 enum TDTExceptionReason
@@ -42,12 +45,6 @@ private:
 	void load_trans_table();
 	void unload_trans_table();
 	std::map<std::string, std::string> parse_parameters(const std::string &parameters);
-	std::string translate1(const std::string &input, 
-			std::map<std::string, std::string> &params, 
-			enum tdt__LevelTypeList output_format, 
-			tdt__EpcTagDataTranslation *trans, 
-			tdt__Scheme *scheme, 
-			tdt__Level *level);
 	std::string translate2(const std::string &input, 
 			std::map<std::string, std::string> &params, 
 			enum tdt__LevelTypeList output_format, 
@@ -63,12 +60,29 @@ private:
 			tdt__Level *level, 
 			tdt__Option *option,
 			tdt__Rule *rule);
+	void apply_format_rule(std::map<std::string, std::string> &params, 
+			enum tdt__LevelTypeList output_format,
+			tdt__EpcTagDataTranslation *trans, 
+			tdt__Scheme *scheme, 
+			tdt__Level *in_level, 
+			tdt__Level *out_level, 
+			tdt__Option *option,
+			tdt__Rule *rule);
+	std::string apply_rule_function(std::map<std::string, std::string> &params, 
+			enum tdt__LevelTypeList output_format,
+			tdt__EpcTagDataTranslation *trans, 
+			tdt__Scheme *scheme, 
+			tdt__Level *level, 
+			tdt__Option *option,
+			tdt__Rule *rule);
   std::string apply_substr(std::map<std::string, std::string> &params, 
 			enum tdt__LevelTypeList output_format, 
 			tdt__EpcTagDataTranslation *trans, 
 			tdt__Scheme *scheme, 
 			tdt__Level *level, 
 			const std::vector<std::string> &ps);
+
+	log4cpp::Category *_log;
 };
 
 #endif /* __TDT_H__ */
