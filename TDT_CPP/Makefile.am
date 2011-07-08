@@ -12,7 +12,8 @@ libtdt_la_SOURCES= \
 
 libtdt_la_LDFLAGS= \
 	-lpthread \
-	-lgmpxx
+	-lgmpxx \
+	-llog4cpp
 
 libtdt_la_LIBADD= \
 	$(objfiles)
@@ -22,7 +23,7 @@ tdt_nsmap.cpp: tdt.nsmap
 	cp $< $@
 
 soapC.cpp tdt.nsmap: EpcTagDataTranslation.h
-	soapcpp2 $^ -I/usr/local/share/gsoap/import
+	soapcpp2 -t $^ -I/usr/local/share/gsoap/import
 
 EpcTagDataTranslation.h: CompactionMethodList.xsd   InputFormatList.xsd  ModeList.xsd EpcTagDataTranslation.xsd  LevelTypeList.xsd    PadDirectionList.xsd
 	wsdl2h EpcTagDataTranslation.xsd

@@ -8,6 +8,9 @@ test_SOURCES= \
 test_CXXFLAGS= \
 	-I..
 
+test_LDFLAGS= \
+	-llog4cpp
+
 test_LDADD= \
 	../libtdt.la \
 	/usr/local/lib/libgsoap++.a

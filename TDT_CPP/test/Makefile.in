@@ -52,7 +52,7 @@ test_OBJECTS = $(am_test_OBJECTS)
 test_DEPENDENCIES = ../libtdt.la /usr/local/lib/libgsoap++.a
 test_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(test_CXXFLAGS) $(CXXFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(test_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -194,6 +194,9 @@ test_SOURCES = \
 
 test_CXXFLAGS = \
 	-I..
+
+test_LDFLAGS = \
+	-llog4cpp
 
 test_LDADD = \
 	../libtdt.la \
